@@ -1677,7 +1677,7 @@
     </ul>
     <div class="nav-r">
       <a href="index.html" class="theme-toggle" title="Switch to Light Mode"
-        onclick="sessionStorage.setItem('animationPlayed', 'true')">☀️</a>
+        onclick="sessionStorage.setItem('skipAnimation', 'true')">☀️</a>
       <div class="nbag">🛍</div>
     </div>
   </nav>
@@ -2170,7 +2170,8 @@
       const canvas = document.getElementById("first-load-canvas");
       if (!animWrapper || !canvas) return;
 
-      if (sessionStorage.getItem('animationPlayed')) {
+      if (sessionStorage.getItem('skipAnimation')) {
+        sessionStorage.removeItem('skipAnimation');
         animWrapper.style.display = 'none';
         return;
       }
@@ -2223,7 +2224,7 @@
         if (progress >= 1 && !animationFinished) {
           animationFinished = true;
           animWrapper.style.display = 'none';
-          sessionStorage.setItem('animationPlayed', 'true');
+
           window.scrollTo(0, 0);
         }
       }
