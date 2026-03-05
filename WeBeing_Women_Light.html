@@ -1,0 +1,2454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>We Being Women — Crafted by Women, For Women</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Syne:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      /* Light palette from brand logo */
+      --bg: #FBF6F2;
+      --bg2: #F7EFE9;
+      --bg3: #F2E6DE;
+      --cream: #EDD8CD;
+      --nude: #D4A898;
+      --rose: #C9967C;
+      --terra: #A8604A;
+      --ink: #1E1410;
+      --bark: #3A2820;
+      --muted: #8A6E66;
+      --border: rgba(168, 96, 74, .15);
+      --border2: rgba(168, 96, 74, .08);
+      --white: #FFFFFF;
+      --shadow: rgba(168, 96, 74, .12);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Syne', sans-serif;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* ── CURSOR ── */
+    #cur {
+      width: 9px;
+      height: 9px;
+      background: var(--rose);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform .12s, background .2s;
+    }
+
+    #cur2 {
+      width: 32px;
+      height: 32px;
+      border: 1.5px solid rgba(201, 150, 124, .5);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: transform .45s cubic-bezier(.16, 1, .3, 1), width .3s, height .3s, opacity .3s;
+    }
+
+    body.hov #cur {
+      transform: translate(-50%, -50%) scale(2.5);
+      background: rgba(201, 150, 124, .4);
+    }
+
+    body.hov #cur2 {
+      width: 54px;
+      height: 54px;
+      opacity: .3;
+    }
+
+    /* ── GRAIN OVERLAY ── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.025'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 8000;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 0px 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all .5s;
+    }
+
+    nav.s {
+      background: rgba(251, 246, 242, .92);
+      backdrop-filter: blur(20px);
+      padding: 0px 56px;
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 24px rgba(168, 96, 74, .06);
+    }
+
+    .nlogo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: .03em;
+    }
+
+    .nlogo em {
+      font-style: italic;
+      color: var(--rose);
+    }
+
+    .nlinks {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nlinks a {
+      font-size: 11px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color .2s;
+      position: relative;
+    }
+
+    .nlinks a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--rose);
+      transition: width .3s;
+    }
+
+    .nlinks a:hover {
+      color: var(--rose);
+    }
+
+    .nlinks a:hover::after {
+      width: 100%;
+    }
+
+    .nav-r {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-wish {
+      font-size: 11px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .nav-wish:hover {
+      color: var(--rose);
+    }
+
+    .nav-bag {
+      width: 40px;
+      height: 40px;
+      border: 1.5px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      cursor: pointer;
+      background: var(--white);
+      transition: all .3s;
+      box-shadow: 0 2px 12px var(--shadow);
+    }
+
+    .nav-bag:hover {
+      border-color: var(--rose);
+      background: var(--bg3);
+      transform: translateY(-2px);
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      background: var(--bg);
+    }
+
+    /* soft radial bg orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(70px);
+    }
+
+    .orb1 {
+      width: 650px;
+      height: 650px;
+      background: radial-gradient(circle, rgba(212, 168, 152, .28) 0%, transparent 70%);
+      top: -120px;
+      right: -80px;
+      animation: drift 9s ease-in-out infinite;
+    }
+
+    .orb2 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(201, 150, 124, .18) 0%, transparent 70%);
+      bottom: -60px;
+      left: 5%;
+      animation: drift 11s ease-in-out infinite reverse;
+    }
+
+    .orb3 {
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(237, 216, 205, .5) 0%, transparent 70%);
+      top: 30%;
+      left: 38%;
+      animation: drift 7s ease-in-out infinite 2s;
+    }
+
+    @keyframes drift {
+
+      0%,
+      100% {
+        transform: translate(0, 0);
+      }
+
+      33% {
+        transform: translate(24px, -18px);
+      }
+
+      66% {
+        transform: translate(-16px, 12px);
+      }
+    }
+
+    /* 3D perspective grid */
+    .pgrid {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 48%;
+      background:
+        linear-gradient(rgba(168, 96, 74, .07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(168, 96, 74, .07) 1px, transparent 1px);
+      background-size: 72px 72px;
+      transform: perspective(560px) rotateX(66deg) translateY(28%);
+      transform-origin: bottom center;
+      mask-image: linear-gradient(to top, rgba(0, 0, 0, .6) 0%, transparent 100%);
+    }
+
+    .hero-wrap {
+      position: relative;
+      z-index: 10;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 100%;
+      padding: 0 72px;
+      gap: 48px;
+      align-items: center;
+    }
+
+    /* left */
+    .hero-l {}
+
+    .htag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(212, 168, 152, .18);
+      border: 1px solid rgba(201, 150, 124, .25);
+      border-radius: 100px;
+      padding: 6px 18px 6px 10px;
+      margin-bottom: 32px;
+      backdrop-filter: blur(8px);
+    }
+
+    .htag-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--rose);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: .4;
+        transform: scale(1.6);
+      }
+    }
+
+    .htag span {
+      font-size: 10px;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--terra);
+    }
+
+    .hero-h {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(54px, 7.5vw, 108px);
+      font-weight: 300;
+      line-height: .95;
+      letter-spacing: -.02em;
+      margin-bottom: 30px;
+      overflow: hidden;
+    }
+
+    .hero-h .ln {
+      display: block;
+      transform: translateY(115%);
+      animation: lineUp .85s cubic-bezier(.16, 1, .3, 1) forwards;
+    }
+
+    .hero-h .ln:nth-child(1) {
+      animation-delay: .25s;
+    }
+
+    .hero-h .ln:nth-child(2) {
+      animation-delay: .42s;
+      font-style: italic;
+      color: var(--rose);
+    }
+
+    .hero-h .ln:nth-child(3) {
+      animation-delay: .58s;
+    }
+
+    @keyframes lineUp {
+      to {
+        transform: translateY(0);
+      }
+    }
+
+    .hero-p {
+      font-size: 15px;
+      line-height: 1.78;
+      color: var(--muted);
+      max-width: 420px;
+      font-weight: 400;
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fin .8s 1s ease forwards;
+    }
+
+    @keyframes fin {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .hbtns {
+      display: flex;
+      gap: 14px;
+      opacity: 0;
+      animation: fin .8s 1.2s ease forwards;
+    }
+
+    .btn-fill {
+      padding: 15px 40px;
+      background: linear-gradient(135deg, var(--rose) 0%, var(--terra) 100%);
+      color: var(--white);
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-block;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 10px 36px rgba(168, 96, 74, .3), 0 0 0 1px rgba(168, 96, 74, .15);
+      position: relative;
+      overflow: hidden;
+      transition: transform .25s, box-shadow .25s;
+    }
+
+    .btn-fill::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, .18) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity .3s;
+    }
+
+    .btn-fill:hover::before {
+      opacity: 1;
+    }
+
+    .btn-fill:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 48px rgba(168, 96, 74, .38);
+    }
+
+    .btn-line {
+      padding: 15px 32px;
+      background: transparent;
+      color: var(--bark);
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-block;
+      border: 1.5px solid var(--border);
+      cursor: pointer;
+      transition: border-color .25s, color .25s, transform .25s;
+    }
+
+    .btn-line:hover {
+      border-color: var(--rose);
+      color: var(--rose);
+      transform: translateY(-3px);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 36px;
+      margin-top: 56px;
+      opacity: 0;
+      animation: fin .8s 1.4s ease forwards;
+    }
+
+    .hstat-n {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1;
+    }
+
+    .hstat-l {
+      font-size: 9px;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* hero right — 3D card stack */
+    .hero-r {
+      position: relative;
+      height: 520px;
+      opacity: 0;
+      animation: fin .9s 1.5s ease forwards;
+    }
+
+    .hcard {
+      position: absolute;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 24px 64px var(--shadow), 0 0 0 1px var(--border2);
+      transition: transform .5s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .hcard:hover {
+      transform: scale(1.02) translateZ(30px) !important;
+    }
+
+    .hcard1 {
+      width: 70%;
+      height: 75%;
+      right: 0;
+      top: 0;
+      background: linear-gradient(145deg, var(--cream) 0%, var(--nude) 100%);
+      transform: rotate(2deg);
+      z-index: 3;
+    }
+
+    .hcard2 {
+      width: 58%;
+      height: 62%;
+      left: 0;
+      bottom: 10px;
+      background: linear-gradient(145deg, var(--bg3) 0%, var(--cream) 100%);
+      transform: rotate(-4deg);
+      z-index: 2;
+      border: 3px solid var(--white);
+    }
+
+    .hcard3 {
+      width: 40%;
+      height: 40%;
+      right: 10%;
+      top: 28%;
+      background: linear-gradient(145deg, var(--rose) 0%, var(--terra) 100%);
+      transform: rotate(6deg);
+      z-index: 1;
+      opacity: .7;
+    }
+
+    .hcard-txt {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .hcard-ico {
+      font-size: 52px;
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, .12));
+    }
+
+    .hcard-label {
+      font-size: 9px;
+      letter-spacing: .4em;
+      text-transform: uppercase;
+      color: rgba(62, 40, 32, .45);
+    }
+
+    .hcard3 .hcard-label {
+      color: rgba(255, 255, 255, .5);
+    }
+
+    /* floating badge on hero card */
+    .hbadge {
+      position: absolute;
+      bottom: -18px;
+      left: -18px;
+      z-index: 10;
+      background: var(--white);
+      padding: 16px 20px;
+      border-radius: 10px;
+      box-shadow: 0 12px 36px var(--shadow), 0 0 0 1px var(--border);
+    }
+
+    .hbadge-l {
+      font-size: 9px;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 4px;
+    }
+
+    .hbadge-t {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    /* scroll indicator */
+    .hscroll {
+      position: absolute;
+      bottom: 36px;
+      left: 72px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      opacity: 0;
+      animation: fin .8s 1.8s ease forwards;
+    }
+
+    .hmouse {
+      width: 22px;
+      height: 36px;
+      border: 1.5px solid rgba(168, 96, 74, .3);
+      border-radius: 11px;
+      position: relative;
+    }
+
+    .hwheel {
+      width: 3px;
+      height: 7px;
+      background: var(--rose);
+      border-radius: 2px;
+      position: absolute;
+      top: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: wd 2s ease-in-out infinite;
+    }
+
+    @keyframes wd {
+      0% {
+        top: 5px;
+        opacity: 1;
+      }
+
+      75% {
+        top: 17px;
+        opacity: 0;
+      }
+
+      100% {
+        top: 5px;
+        opacity: 0;
+      }
+    }
+
+    .hscroll-t {
+      font-size: 9px;
+      letter-spacing: .4em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── MARQUEE ── */
+    .marquee {
+      background: linear-gradient(135deg, var(--rose) 0%, var(--terra) 100%);
+      padding: 13px 0;
+      overflow: hidden;
+      display: flex;
+    }
+
+    .mtrack {
+      display: flex;
+      animation: mq 20s linear infinite;
+      white-space: nowrap;
+    }
+
+    .mitem {
+      padding: 0 30px;
+      font-size: 10px;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .85);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .mitem::after {
+      content: '✦';
+      font-size: 8px;
+      opacity: .6;
+    }
+
+    @keyframes mq {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* ── SECTION UTILS ── */
+    .sec {
+      padding: 112px 72px;
+    }
+
+    .stag {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .stag-line {
+      width: 28px;
+      height: 1px;
+      background: var(--rose);
+    }
+
+    .stag span {
+      font-size: 10px;
+      letter-spacing: .42em;
+      text-transform: uppercase;
+      color: var(--rose);
+    }
+
+    .sh {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 4.5vw, 60px);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--ink);
+    }
+
+    .sh em {
+      font-style: italic;
+      color: var(--rose);
+    }
+
+    /* ── CATEGORIES ── */
+    #cats {
+      background: var(--bg2);
+    }
+
+    .cats-hdr {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 52px;
+    }
+
+    .see-all {
+      font-size: 11px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color .2s;
+      padding-bottom: 6px;
+    }
+
+    .see-all:hover {
+      color: var(--rose);
+    }
+
+    .cat-grid {
+      display: grid;
+      grid-template-columns: 1.55fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 16px;
+      height: 560px;
+    }
+
+    .ccard {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      border-radius: 14px;
+      box-shadow: 0 8px 32px var(--shadow);
+      transition: transform .5s cubic-bezier(.16, 1, .3, 1), box-shadow .5s;
+    }
+
+    .ccard:hover {
+      box-shadow: 0 24px 60px rgba(168, 96, 74, .2);
+    }
+
+    .ccard:nth-child(1) {
+      grid-row: span 2;
+    }
+
+    .cbg {
+      position: absolute;
+      inset: 0;
+      transition: transform .6s ease;
+    }
+
+    .ccard:hover .cbg {
+      transform: scale(1.06);
+    }
+
+    .cb1 {
+      background: linear-gradient(160deg, #EDD8CD 0%, #C9967C 60%, #A8604A 100%);
+    }
+
+    .cb2 {
+      background: linear-gradient(160deg, #F2E6DE 0%, #D4A898 100%);
+    }
+
+    .cb3 {
+      background: linear-gradient(160deg, #EDD8CD 0%, #C9967C 100%);
+    }
+
+    .cb4 {
+      background: linear-gradient(160deg, #D4A898 0%, #A8604A 100%);
+    }
+
+    /* inner radial sheen */
+    .cglow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 25% 25%, rgba(255, 255, 255, .22) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity .4s;
+    }
+
+    .ccard:hover .cglow {
+      opacity: 1;
+    }
+
+    .cinfo {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 24px 22px;
+      background: linear-gradient(to top, rgba(62, 40, 32, .65) 0%, transparent 100%);
+      transform: translateY(10px);
+      opacity: .85;
+      transition: transform .4s, opacity .4s;
+    }
+
+    .ccard:hover .cinfo {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .cico {
+      font-size: 40px;
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      filter: drop-shadow(0 3px 10px rgba(0, 0, 0, .15));
+      transition: transform .4s;
+    }
+
+    .ccard:hover .cico {
+      transform: translateY(-4px) scale(1.1);
+    }
+
+    .cname {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      font-weight: 400;
+      color: var(--white);
+    }
+
+    .csub {
+      font-size: 10px;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .55);
+      margin-top: 3px;
+    }
+
+    .carr {
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      width: 36px;
+      height: 36px;
+      background: rgba(255, 255, 255, .18);
+      border: 1px solid rgba(255, 255, 255, .25);
+      backdrop-filter: blur(8px);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 13px;
+      opacity: 0;
+      transform: scale(.8) rotate(-45deg);
+      transition: all .35s;
+    }
+
+    .ccard:hover .carr {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
+
+    /* ── PRODUCTS ── */
+    #prods {
+      background: var(--bg);
+    }
+
+    .prods-hdr {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 52px;
+    }
+
+    .pgrid2 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .pcard {
+      position: relative;
+      cursor: pointer;
+      transition: transform .5s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .pcard:hover {
+      transform: translateY(-10px);
+    }
+
+    .pimg {
+      width: 100%;
+      aspect-ratio: 3/4;
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 16px;
+      box-shadow: 0 8px 28px var(--shadow);
+      transition: box-shadow .5s;
+    }
+
+    .pcard:hover .pimg {
+      box-shadow: 0 20px 52px rgba(168, 96, 74, .2);
+    }
+
+    .pbg {
+      position: absolute;
+      inset: 0;
+      transition: transform .6s ease;
+    }
+
+    .pcard:hover .pbg {
+      transform: scale(1.06);
+    }
+
+    /* light gradients for product cards */
+    .p1 {
+      background: linear-gradient(145deg, #F2E6DE, #D4A898);
+    }
+
+    .p2 {
+      background: linear-gradient(145deg, #EDD8CD, #C9967C);
+    }
+
+    .p3 {
+      background: linear-gradient(145deg, #D4A898, #A8604A);
+    }
+
+    .p4 {
+      background: linear-gradient(145deg, #F7EFE9, #EDD8CD);
+    }
+
+    .p5 {
+      background: linear-gradient(145deg, #C9967C, #8B4A38);
+    }
+
+    .p6 {
+      background: linear-gradient(145deg, #EDD8CD, #D4A898);
+    }
+
+    /* light sheen sweep */
+    .psheen {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(108deg, transparent 38%, rgba(255, 255, 255, .3) 50%, transparent 62%);
+      transform: translateX(-110%);
+      transition: transform .65s ease;
+    }
+
+    .pcard:hover .psheen {
+      transform: translateX(110%);
+    }
+
+    /* floating shadow below card */
+    .pcard::after {
+      content: '';
+      position: absolute;
+      bottom: -14px;
+      left: 15%;
+      right: 15%;
+      height: 14px;
+      background: radial-gradient(ellipse, rgba(168, 96, 74, .22) 0%, transparent 70%);
+      filter: blur(6px);
+      opacity: 0;
+      transition: opacity .5s;
+    }
+
+    .pcard:hover::after {
+      opacity: 1;
+    }
+
+    .pbadge {
+      position: absolute;
+      top: 13px;
+      left: 13px;
+      padding: 4px 11px;
+      font-size: 8px;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      border-radius: 100px;
+    }
+
+    .pbadge.new {
+      background: var(--rose);
+      color: white;
+    }
+
+    .pbadge.best {
+      background: rgba(251, 246, 242, .9);
+      color: var(--terra);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(8px);
+    }
+
+    .pwish {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 32px;
+      height: 32px;
+      background: rgba(255, 255, 255, .8);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      backdrop-filter: blur(8px);
+      opacity: 0;
+      transform: scale(.7);
+      transition: all .3s;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, .08);
+    }
+
+    .pcard:hover .pwish {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .pimgtxt {
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 9px;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: rgba(62, 40, 32, .35);
+      white-space: nowrap;
+    }
+
+    .pcat {
+      font-size: 9px;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 5px;
+    }
+
+    .pname {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 9px;
+      line-height: 1.2;
+    }
+
+    .prow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .pprice {
+      font-size: 15px;
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .pprice s {
+      color: var(--muted);
+      font-size: 12px;
+      margin-right: 5px;
+      font-weight: 400;
+    }
+
+    .padd {
+      font-size: 10px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .padd:hover {
+      color: var(--rose);
+    }
+
+    /* ── STORY ── */
+    #story {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      padding: 0;
+      background: var(--bg2);
+    }
+
+    .story-vis {
+      position: relative;
+      min-height: 640px;
+      overflow: hidden;
+      background: linear-gradient(145deg, var(--bg3) 0%, var(--cream) 60%, var(--nude) 100%);
+    }
+
+    .story-orb {
+      position: absolute;
+      width: 480px;
+      height: 480px;
+      background: radial-gradient(circle, rgba(201, 150, 124, .2) 0%, transparent 70%);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: drift 7s ease-in-out infinite;
+    }
+
+    .story-bigW {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 300px;
+      font-weight: 300;
+      color: rgba(168, 96, 74, .07);
+      font-style: italic;
+      user-select: none;
+      line-height: 1;
+    }
+
+    .story-badge {
+      position: absolute;
+      bottom: 48px;
+      right: -16px;
+      background: linear-gradient(135deg, var(--rose), var(--terra));
+      padding: 18px 28px;
+      box-shadow: 0 20px 52px rgba(168, 96, 74, .3);
+      border-radius: 4px;
+      z-index: 5;
+    }
+
+    .story-badge-n {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 34px;
+      font-weight: 600;
+      color: white;
+      line-height: 1;
+    }
+
+    .story-badge-l {
+      font-size: 9px;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .75);
+      margin-top: 3px;
+    }
+
+    .story-cnt {
+      padding: 96px 72px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--bg);
+    }
+
+    .story-body {
+      margin-top: 26px;
+      font-size: 15px;
+      line-height: 1.85;
+      color: var(--muted);
+      max-width: 450px;
+    }
+
+    .story-body p+p {
+      margin-top: 18px;
+    }
+
+    .sig {
+      margin-top: 40px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .sig-av {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--rose), var(--terra));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      color: white;
+    }
+
+    .sig-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-style: italic;
+      color: var(--ink);
+    }
+
+    .sig-role {
+      font-size: 9px;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: var(--bg2);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 72px;
+      align-items: center;
+    }
+
+    .vals {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 44px;
+    }
+
+    .vcard {
+      padding: 28px 22px;
+      background: var(--white);
+      border: 1px solid var(--border2);
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(168, 96, 74, .06);
+      transition: transform .4s cubic-bezier(.16, 1, .3, 1), box-shadow .4s, border-color .3s;
+    }
+
+    .vcard:hover {
+      transform: translateY(-7px) rotateX(3deg);
+      box-shadow: 0 16px 40px rgba(168, 96, 74, .15);
+      border-color: var(--border);
+    }
+
+    /* top accent line */
+    .vcard::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--rose), var(--terra));
+      transform: scaleX(0);
+      transition: transform .4s;
+      transform-origin: left;
+    }
+
+    .vcard:hover::before {
+      transform: scaleX(1);
+    }
+
+    .vico {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .vname {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .vdesc {
+      font-size: 12px;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    /* 3D image stack */
+    .avis {
+      position: relative;
+      height: 500px;
+    }
+
+    .aimg {
+      position: absolute;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 24px 64px var(--shadow), 0 0 0 1px var(--border2);
+      transition: transform .6s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .ai1 {
+      width: 72%;
+      height: 70%;
+      right: 0;
+      top: 0;
+      background: linear-gradient(135deg, var(--nude), var(--rose));
+      transform: rotate(2deg);
+    }
+
+    .ai1:hover {
+      transform: rotate(0deg) translateY(-8px) scale(1.02);
+    }
+
+    .ai2 {
+      width: 56%;
+      height: 57%;
+      left: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, var(--bg3), var(--cream));
+      border: 4px solid var(--bg);
+      transform: rotate(-3deg);
+    }
+
+    .ai2:hover {
+      transform: rotate(0deg) translateY(-8px) scale(1.02);
+    }
+
+    .ailab {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: rgba(62, 40, 32, .35);
+    }
+
+    .apill {
+      position: absolute;
+      top: 28px;
+      left: -14px;
+      z-index: 10;
+      background: var(--white);
+      padding: 14px 18px;
+      border-radius: 10px;
+      box-shadow: 0 12px 36px var(--shadow), 0 0 0 1px var(--border);
+    }
+
+    .apill-n {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--rose);
+      line-height: 1;
+    }
+
+    .apill-l {
+      font-size: 9px;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* ── TESTIMONIALS ── */
+    #testi {
+      background: var(--bg3);
+      text-align: center;
+    }
+
+    .tgrid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 56px;
+      text-align: left;
+    }
+
+    .tcard {
+      background: var(--white);
+      border: 1px solid var(--border2);
+      padding: 32px 26px;
+      border-radius: 14px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(168, 96, 74, .06);
+      transition: transform .4s cubic-bezier(.16, 1, .3, 1), box-shadow .4s;
+    }
+
+    .tcard:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(168, 96, 74, .14);
+    }
+
+    /* bottom gradient bar */
+    .tcard::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--rose), var(--terra));
+      transform: scaleX(0);
+      transition: transform .4s;
+      transform-origin: center;
+    }
+
+    .tcard:hover::after {
+      transform: scaleX(1);
+    }
+
+    .tq {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 72px;
+      line-height: .45;
+      color: var(--cream);
+      margin-bottom: 18px;
+    }
+
+    .ttxt {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-style: italic;
+      line-height: 1.65;
+      color: var(--bark);
+      margin-bottom: 24px;
+    }
+
+    .tauth {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .tav {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, var(--rose), var(--terra));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      color: white;
+    }
+
+    .tname {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .tloc {
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    .tstars {
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      color: var(--rose);
+      letter-spacing: 2px;
+      font-size: 11px;
+    }
+
+    /* ── NEWSLETTER ── */
+    #nl {
+      background: var(--bg);
+      padding: 112px 72px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* decorative rings */
+    #nl::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      border: 1px solid rgba(201, 150, 124, .12);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    #nl::after {
+      content: '';
+      position: absolute;
+      width: 760px;
+      height: 760px;
+      border-radius: 50%;
+      border: 1px solid rgba(201, 150, 124, .07);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .nl-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 660px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .nl-inner .stag {
+      justify-content: center;
+    }
+
+    .nl-inner .sh {
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .nl-body {
+      font-size: 16px;
+      line-height: 1.72;
+      color: var(--muted);
+      margin-bottom: 44px;
+    }
+
+    .nl-form {
+      display: flex;
+      max-width: 480px;
+      margin: 0 auto 18px;
+      border-radius: 100px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px var(--shadow);
+      border: 1.5px solid var(--border);
+      background: var(--white);
+    }
+
+    .nl-input {
+      flex: 1;
+      padding: 16px 24px;
+      background: transparent;
+      border: none;
+      color: var(--ink);
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      outline: none;
+    }
+
+    .nl-input::placeholder {
+      color: var(--muted);
+    }
+
+    .nl-btn {
+      padding: 14px 28px;
+      margin: 4px;
+      border-radius: 100px;
+      background: linear-gradient(135deg, var(--rose), var(--terra));
+      color: white;
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: opacity .2s, transform .2s;
+      white-space: nowrap;
+    }
+
+    .nl-btn:hover {
+      opacity: .9;
+      transform: scale(1.02);
+    }
+
+    .nl-note {
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: .12em;
+      margin-bottom: 36px;
+    }
+
+    .nl-perks {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    .nlp {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .nlp::before {
+      content: '✦';
+      color: var(--rose);
+      font-size: 8px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      padding: 72px 72px 36px;
+    }
+
+    .ftop {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 56px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid rgba(255, 255, 255, .06);
+    }
+
+    .flogo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .flogo em {
+      font-style: italic;
+      color: var(--nude);
+    }
+
+    .ftag-txt {
+      font-size: 13px;
+      line-height: 1.7;
+      color: rgba(253, 250, 248, .3);
+      max-width: 220px;
+      margin-bottom: 24px;
+    }
+
+    .fsoc {
+      display: flex;
+      gap: 10px;
+    }
+
+    .fsb {
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      text-decoration: none;
+      color: rgba(255, 255, 255, .4);
+      transition: all .25s;
+    }
+
+    .fsb:hover {
+      border-color: var(--nude);
+      color: var(--nude);
+      transform: translateY(-2px);
+    }
+
+    .fct {
+      font-size: 9px;
+      letter-spacing: .4em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 18px;
+    }
+
+    .flinks {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .flinks a {
+      font-size: 13px;
+      color: rgba(253, 250, 248, .3);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .flinks a:hover {
+      color: var(--nude);
+    }
+
+    .fbot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .fcopy {
+      font-size: 11px;
+      color: rgba(255, 255, 255, .2);
+    }
+
+    .fmade {
+      font-size: 11px;
+      color: rgba(255, 255, 255, .2);
+    }
+
+    .fmade span {
+      color: var(--rose);
+    }
+
+    /* ── REVEALS ── */
+    .rv {
+      opacity: 0;
+      transform: translateY(42px);
+      transition: opacity .85s cubic-bezier(.16, 1, .3, 1), transform .85s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .rv.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .rv.d1 {
+      transition-delay: .08s;
+    }
+
+    .rv.d2 {
+      transition-delay: .18s;
+    }
+
+    .rv.d3 {
+      transition-delay: .28s;
+    }
+
+    .rv.d4 {
+      transition-delay: .38s;
+    }
+
+    .rv.d5 {
+      transition-delay: .48s;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:1024px) {
+      .sec {
+        padding: 72px 28px;
+      }
+
+      nav,
+      nav.s {
+        padding: 16px 24px;
+      }
+
+      .hero-wrap {
+        grid-template-columns: 1fr;
+        padding: 0 28px;
+      }
+
+      .hero-r {
+        height: 360px;
+      }
+
+      .cat-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        height: auto;
+      }
+
+      .ccard:nth-child(1) {
+        grid-row: span 1;
+      }
+
+      .pgrid2 {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      #story {
+        grid-template-columns: 1fr;
+      }
+
+      .story-vis {
+        min-height: 260px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tgrid {
+        grid-template-columns: 1fr;
+      }
+
+      .ftop {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .nl-form {
+        flex-direction: column;
+        border-radius: 12px;
+      }
+
+      .nl-btn {
+        margin: 0 4px 4px;
+        border-radius: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- FIRST LOAD SCROLL ANIMATION -->
+  <div id="first-load-anim" style="height: 400vh; position: relative; z-index: 9999; background: #000;">
+    <div
+      style="position: sticky; top: 0; height: 100vh; width: 100%; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #000;">
+      <canvas id="first-load-canvas" style="width: 100%; height: 100%; object-fit: contain;"></canvas>
+    </div>
+  </div>
+
+  <div id="cur"></div>
+  <div id="cur2"></div>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#" class="nlogo"><img src="logo.png" alt="We Being Women"
+        style="height: 54px; width: auto; display: block;"></a>
+    <ul class="nlinks">
+      <li><a href="#cats">Collections</a></li>
+      <li><a href="#prods">Shop</a></li>
+      <li><a href="#story">Story</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+    <div class="nav-r">
+      <a href="#" class="nav-wish">Wishlist</a>
+      <div class="nav-bag">🛍</div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+    <div class="pgrid"></div>
+
+    <div class="hero-wrap">
+      <!-- left -->
+      <div class="hero-l">
+        <div class="htag">
+          <div class="htag-dot"></div>
+          <span>New Collection 2026 — Now Live</span>
+        </div>
+        <h1 class="hero-h">
+          <span class="ln">Crafted</span>
+          <span class="ln">by Women,</span>
+          <span class="ln">for Women.</span>
+        </h1>
+        <p class="hero-p">Jewellery, Ayurvedic cosmetics, handwoven textiles — every piece curated and created by women
+          who pour generations of craft into every detail.</p>
+        <div class="hbtns">
+          <a href="#cats" class="btn-fill">Explore Collections</a>
+          <a href="#story" class="btn-line">Our Story</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="hstat-n">200+</div>
+            <div class="hstat-l">Women Artisans</div>
+          </div>
+          <div>
+            <div class="hstat-n">4</div>
+            <div class="hstat-l">Craft Categories</div>
+          </div>
+          <div>
+            <div class="hstat-n">100%</div>
+            <div class="hstat-l">Handmade</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- right — 3D card stack -->
+      <div class="hero-r">
+        <div class="hcard hcard1">
+          <div class="hcard-img"
+            style="background-image: url('hero01.png'); background-size: cover; background-position: center; height: 100%; width: 100%; border-radius: 12px;">
+          </div>
+        </div>
+        <div class="hcard hcard2">
+          <div class="hcard-img"
+            style="background-image: url('hero02.png'); background-size: cover; background-position: center; height: 100%; width: 100%; border-radius: 12px;">
+          </div>
+        </div>
+        <div class="hcard hcard3">
+          <div class="hcard-txt">
+            <div class="hcard-ico">🧵</div>
+          </div>
+        </div>
+        <div class="hbadge">
+          <div class="hbadge-l">New Arrival</div>
+          <div class="hbadge-t">Festive Collection '26</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hscroll">
+      <div class="hmouse">
+        <div class="hwheel"></div>
+      </div>
+      <span class="hscroll-t">Scroll to explore</span>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee">
+    <div class="mtrack">
+      <div class="mitem">Handmade Jewellery</div>
+      <div class="mitem">Ayurvedic Cosmetics</div>
+      <div class="mitem">Handwoven Textiles</div>
+      <div class="mitem">By Women · For Women</div>
+      <div class="mitem">Empowering Women Every Day</div>
+      <div class="mitem">Artisan Craft</div>
+      <div class="mitem">Made in India</div>
+      <div class="mitem">Handmade Jewellery</div>
+      <div class="mitem">Ayurvedic Cosmetics</div>
+      <div class="mitem">Handwoven Textiles</div>
+      <div class="mitem">By Women · For Women</div>
+      <div class="mitem">Empowering Women Every Day</div>
+      <div class="mitem">Artisan Craft</div>
+      <div class="mitem">Made in India</div>
+    </div>
+  </div>
+
+  <!-- CATEGORIES -->
+  <section class="sec" id="cats">
+    <div class="cats-hdr rv">
+      <div>
+        <div class="stag">
+          <div class="stag-line"></div><span>What we make</span>
+        </div>
+        <h2 class="sh">Our <em>Collections</em></h2>
+      </div>
+      <a href="#" class="see-all">View all collections →</a>
+    </div>
+    <div class="cat-grid">
+      <div class="ccard rv d1">
+        <div class="cbg cb1"
+          style="background-image: url('handmade jwellery.png'); background-size: cover; background-position: center;">
+        </div>
+        <div class="cglow"></div>
+        <div class="cico">💍</div>
+        <div class="carr">→</div>
+        <div class="cinfo">
+          <div class="cname">Handmade Jewellery</div>
+          <div class="csub">48 pieces · Gold & Silver</div>
+        </div>
+      </div>
+      <div class="ccard rv d2">
+        <div class="cbg cb2"
+          style="background-image: url('ayurvedic comsmetics.png'); background-size: cover; background-position: center;">
+        </div>
+        <div class="cglow"></div>
+        <div class="cico">🌿</div>
+        <div class="carr">→</div>
+        <div class="cinfo">
+          <div class="cname">Ayurvedic Cosmetics</div>
+          <div class="csub">32 products · 100% Natural</div>
+        </div>
+      </div>
+      <div class="ccard rv d3">
+        <div class="cbg cb3"
+          style="background-image: url('Handwoven textile.png'); background-size: cover; background-position: center;">
+        </div>
+        <div class="cglow"></div>
+        <div class="cico">🧵</div>
+        <div class="carr">→</div>
+        <div class="cinfo">
+          <div class="cname">Handwoven Textiles</div>
+          <div class="csub">26 items · Block & Weave</div>
+        </div>
+      </div>
+      <div class="ccard rv d4">
+        <div class="cbg cb4"
+          style="background-image: url('Artisians handmade.png'); background-size: cover; background-position: center;">
+        </div>
+        <div class="cglow"></div>
+        <div class="cico">🪔</div>
+        <div class="carr">→</div>
+        <div class="cinfo">
+          <div class="cname">Artisan Handmade</div>
+          <div class="csub">19 pieces · One of a kind</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="sec" id="prods">
+    <div class="prods-hdr rv">
+      <div>
+        <div class="stag">
+          <div class="stag-line"></div><span>Most loved</span>
+        </div>
+        <h2 class="sh">Bestselling <em>Pieces</em></h2>
+      </div>
+      <a href="#" class="see-all">View all products →</a>
+    </div>
+    <div class="pgrid2">
+      <div class="pcard rv d1">
+        <div class="pimg">
+          <div class="pbg p1"
+            style="background-image: url('Rawa Gold Choker.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="psheen"></div>
+          <div class="pbadge new">New</div>
+          <div class="pwish">♡</div>
+        </div>
+        <div class="pcat">Handmade Jewellery</div>
+        <div class="pname">Rawa Gold Choker</div>
+        <div class="prow">
+          <div class="pprice">₹2,400</div><a href="#" class="padd">Add to bag +</a>
+        </div>
+      </div>
+      <div class="pcard rv d2">
+        <div class="pimg">
+          <div class="pbg p2"
+            style="background-image: url('Rose & Neem Face Oil.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="psheen"></div>
+          <div class="pbadge best">Bestseller</div>
+          <div class="pwish">♡</div>
+        </div>
+        <div class="pcat">Ayurvedic Cosmetics</div>
+        <div class="pname">Rose & Neem Face Oil</div>
+        <div class="prow">
+          <div class="pprice"><s>₹980</s>₹780</div><a href="#" class="padd">Add to bag +</a>
+        </div>
+      </div>
+      <div class="pcard rv d3">
+        <div class="pimg">
+          <div class="pbg p3"
+            style="background-image: url('Indigo Block Print Dupatta.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="psheen"></div>
+          <div class="pwish">♡</div>
+        </div>
+        <div class="pcat">Handwoven Textiles</div>
+        <div class="pname">Indigo Block Print Dupatta</div>
+        <div class="prow">
+          <div class="pprice">₹1,850</div><a href="#" class="padd">Add to bag +</a>
+        </div>
+      </div>
+      <div class="pcard rv d1">
+        <div class="pimg">
+          <div class="pbg p4"
+            style="background-image: url('Terracotta Stud Set.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="psheen"></div>
+          <div class="pbadge new">New</div>
+          <div class="pwish">♡</div>
+        </div>
+        <div class="pcat">Handmade Jewellery</div>
+        <div class="pname">Terracotta Stud Set</div>
+        <div class="prow">
+          <div class="pprice">₹680</div><a href="#" class="padd">Add to bag +</a>
+        </div>
+      </div>
+      <div class="pcard rv d2">
+        <div class="pimg">
+          <div class="pbg p5"
+            style="background-image: url('Kumkumadi Glow Serum.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="psheen"></div>
+          <div class="pbadge best">Bestseller</div>
+          <div class="pwish">♡</div>
+        </div>
+        <div class="pcat">Ayurvedic Cosmetics</div>
+        <div class="pname">Kumkumadi Glow Serum</div>
+        <div class="prow">
+          <div class="pprice">₹1,200</div><a href="#" class="padd">Add to bag +</a>
+        </div>
+      </div>
+      <div class="pcard rv d3">
+        <div class="pimg">
+          <div class="pbg p6"
+            style="background-image: url('Hand-poured Rose Wax Diya.png'); background-size: cover; background-position: center;">
+          </div>
+          <div class="psheen"></div>
+          <div class="pwish">♡</div>
+        </div>
+        <div class="pcat">Artisan Handmade</div>
+        <div class="pname">Hand-poured Rose Wax Diya</div>
+        <div class="prow">
+          <div class="pprice">₹450</div><a href="#" class="padd">Add to bag +</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <div id="story">
+    <div class="story-vis"
+      style="background-image: url('our story.jpeg'); background-size: cover; background-position: center 25%;">
+      <div class="story-orb"></div>
+      <div class="story-bigW">W</div>
+      <div class="story-badge">
+        <div class="story-badge-n">200+</div>
+        <div class="story-badge-l">Women Artisans</div>
+      </div>
+    </div>
+    <div class="story-cnt rv">
+      <div class="stag">
+        <div class="stag-line"></div><span>Our Story</span>
+      </div>
+      <h2 class="sh">Born from a<br><em>woman's dream</em></h2>
+      <div class="story-body">
+        <p>We Being Women began as a simple belief — that the hands of Indian women hold centuries of wisdom, artistry,
+          and grace that the world deserves to know.</p>
+        <p>From the jewellers of Rajasthan to the weavers of Bengal, from Ayurvedic herbalists to block-print artists —
+          every woman behind this platform is a founder in her own right.</p>
+        <p>We don't just sell products. We celebrate the women who make them.</p>
+      </div>
+      <div class="sig">
+        <div class="sig-av">W</div>
+        <div>
+          <div class="sig-name">The Founders</div>
+          <div class="sig-role">We Being Women · Est. 2026</div>
+        </div>
+      </div>
+      <a href="#" class="btn-line" style="margin-top:36px;display:inline-block;">Read Our Story →</a>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="sec" id="about">
+    <div class="about-grid">
+      <div>
+        <div class="stag rv">
+          <div class="stag-line"></div><span>Who we are</span>
+        </div>
+        <h2 class="sh rv">Built on <em>trust<br>& craft</em></h2>
+        <div class="vals">
+          <div class="vcard rv d1">
+            <div class="vico">🌿</div>
+            <div class="vname">100% Natural</div>
+            <div class="vdesc">Every cosmetic is plant-based, Ayurvedic, and free of harmful chemicals.</div>
+          </div>
+          <div class="vcard rv d2">
+            <div class="vico">🤲</div>
+            <div class="vname">Handcrafted</div>
+            <div class="vdesc">Every product is made by hand — no mass production, ever.</div>
+          </div>
+          <div class="vcard rv d3">
+            <div class="vico">♀️</div>
+            <div class="vname">Women-Led</div>
+            <div class="vdesc">Designed, curated, and sold entirely by women.</div>
+          </div>
+          <div class="vcard rv d4">
+            <div class="vico">🇮🇳</div>
+            <div class="vname">Made in India</div>
+            <div class="vdesc">Rooted in Indian craft traditions, elevated for the modern woman.</div>
+          </div>
+        </div>
+      </div>
+      <div class="avis rv d2">
+        <div class="aimg ai1"
+          style="background-image: url('who we are 01.png'); background-size: cover; background-position: center;">
+        </div>
+        <div class="aimg ai2"
+          style="background-image: url('who we are 02.png'); background-size: cover; background-position: center;">
+        </div>
+        <div class="apill">
+          <div class="apill-n">100%</div>
+          <div class="apill-l">Women-Made</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="sec" id="testi">
+    <div style="text-align:center;" class="rv">
+      <div class="stag" style="justify-content:center;">
+        <div class="stag-line"></div><span>What women say</span>
+      </div>
+      <h2 class="sh">Loved by <em>every woman</em></h2>
+    </div>
+    <div class="tgrid">
+      <div class="tcard rv d1">
+        <div class="tq">"</div>
+        <div class="ttxt">The jewellery I ordered is so delicate and beautifully made. You can feel the love in every
+          detail. Will never shop anywhere else.</div>
+        <div class="tstars">★★★★★</div>
+        <div class="tauth">
+          <div class="tav">P</div>
+          <div>
+            <div class="tname">Priya Mehta</div>
+            <div class="tloc">Mumbai, India</div>
+          </div>
+        </div>
+      </div>
+      <div class="tcard rv d2">
+        <div class="tq">"</div>
+        <div class="ttxt">The Kumkumadi serum transformed my skin in just three weeks. Pure Ayurveda — I could smell the
+          difference the moment I opened it.</div>
+        <div class="tstars">★★★★★</div>
+        <div class="tauth">
+          <div class="tav">R</div>
+          <div>
+            <div class="tname">Rashmi Iyer</div>
+            <div class="tloc">Bengaluru, India</div>
+          </div>
+        </div>
+      </div>
+      <div class="tcard rv d3">
+        <div class="tq">"</div>
+        <div class="ttxt">Finally a platform that celebrates Indian women makers. The dupatta I bought is museum-worthy.
+          So proud to support this brand.</div>
+        <div class="tstars">★★★★★</div>
+        <div class="tauth">
+          <div class="tav">A</div>
+          <div>
+            <div class="tname">Anjali Sharma</div>
+            <div class="tloc">Jaipur, India</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section id="nl">
+    <div class="nl-inner">
+      <div class="stag rv" style="justify-content:center;">
+        <div class="stag-line"></div><span>Stay connected</span>
+      </div>
+      <h2 class="sh rv">Join our <em>circle</em></h2>
+      <p class="nl-body rv">Be the first to know about new collections, artisan stories, Ayurvedic wisdom, and exclusive
+        offers — delivered with love.</p>
+      <div class="nl-form rv">
+        <input type="email" class="nl-input" placeholder="Your email address">
+        <button class="nl-btn">Join →</button>
+      </div>
+      <p class="nl-note rv">No spam, ever. Unsubscribe anytime.</p>
+      <div class="nl-perks rv">
+        <div class="nlp">Early access to launches</div>
+        <div class="nlp">10% off first order</div>
+        <div class="nlp">Artisan stories weekly</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="ftop">
+      <div>
+        <div class="flogo"><img src="logo.png" alt="We Being Women" style="height: 54px; width: auto; display: block;">
+        </div>
+        <div class="ftag-txt">By women. For women. Crafted with love and rooted in the richness of Indian heritage.
+        </div>
+        <div class="fsoc">
+          <a href="#" class="fsb">📸</a><a href="#" class="fsb">🐦</a>
+          <a href="#" class="fsb">▶</a><a href="#" class="fsb">📌</a>
+        </div>
+      </div>
+      <div>
+        <div class="fct">Shop</div>
+        <ul class="flinks">
+          <li><a href="#">Jewellery</a></li>
+          <li><a href="#">Ayurvedic Cosmetics</a></li>
+          <li><a href="#">Handwoven Textiles</a></li>
+          <li><a href="#">Handmade Artisan</a></li>
+          <li><a href="#">Gift Sets</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="fct">Brand</div>
+        <ul class="flinks">
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Meet the Artisans</a></li>
+          <li><a href="#">Sustainability</a></li>
+          <li><a href="#">Press</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="fct">Help</div>
+        <ul class="flinks">
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Shipping & Returns</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fbot">
+      <div class="fcopy">© 2026 We Being Women. All rights reserved.</div>
+      <div class="fmade">Made with <span>♥</span> by women, for women</div>
+    </div>
+  </footer>
+
+  <script>
+    /* CURSOR */
+    const cur = document.getElementById('cur'), cur2 = document.getElementById('cur2');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cur.style.left = mx + 'px'; cur.style.top = my + 'px';
+    });
+    (function loop() {
+      rx += (mx - rx) * .1; ry += (my - ry) * .1;
+      cur2.style.left = rx + 'px'; cur2.style.top = ry + 'px';
+      requestAnimationFrame(loop);
+    })();
+    document.querySelectorAll('a,button,.ccard,.pcard,.vcard,.tcard,.hcard').forEach(el => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('hov'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('hov'));
+    });
+
+    /* NAV */
+    window.addEventListener('scroll', () => {
+      document.getElementById('nav').classList.toggle('s', scrollY > 50);
+    });
+
+    /* MOUSE PARALLAX ORBS */
+    document.addEventListener('mousemove', e => {
+      const x = (e.clientX / innerWidth - .5) * 28, y = (e.clientY / innerHeight - .5) * 18;
+      document.querySelector('.orb1').style.transform = `translate(${x * .7}px,${y * .7}px)`;
+      document.querySelector('.orb2').style.transform = `translate(${-x * .5}px,${-y * .5}px)`;
+      document.querySelector('.orb3').style.transform = `translate(${x * 1.1}px,${y * 1.1}px)`;
+    });
+
+    /* HERO CARDS MOUSE PARALLAX */
+    document.addEventListener('mousemove', e => {
+      const x = (e.clientX / innerWidth - .5) * 20, y = (e.clientY / innerHeight - .5) * 14;
+      const c1 = document.querySelector('.hcard1'), c2 = document.querySelector('.hcard2'), c3 = document.querySelector('.hcard3');
+      if (c1) c1.style.transform = `rotate(2deg) translate(${x * .4}px,${y * .4}px)`;
+      if (c2) c2.style.transform = `rotate(-4deg) translate(${-x * .3}px,${-y * .3}px)`;
+      if (c3) c3.style.transform = `rotate(6deg) translate(${x * .6}px,${y * .6}px)`;
+    });
+
+    /* 3D CARD TILT */
+    document.querySelectorAll('.ccard,.pcard,.vcard,.tcard').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        const x = ((e.clientX - r.left) / r.width - .5) * 16;
+        const y = ((e.clientY - r.top) / r.height - .5) * -16;
+        card.style.transform = `perspective(900px) rotateY(${x}deg) rotateX(${y}deg) translateY(-8px) translateZ(12px)`;
+      });
+      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+    });
+
+    /* SCROLL PARALLAX */
+    window.addEventListener('scroll', () => {
+      const y = scrollY;
+      const hl = document.querySelector('.hero-l');
+      const hr = document.querySelector('.hero-r');
+      if (hl) hl.style.transform = `translateY(${y * .3}px)`;
+      if (hr) hr.style.transform = `translateY(${y * .18}px)`;
+      document.querySelector('.pgrid').style.transform =
+        `perspective(560px) rotateX(66deg) translateY(calc(28% + ${y * .15}px))`;
+    });
+
+    /* SCROLL REVEAL */
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+    }, { threshold: .08 });
+    document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+  </script>
+  <script>
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      window.scrollTo(0, 0);
+
+      const animWrapper = document.getElementById("first-load-anim");
+      const canvas = document.getElementById("first-load-canvas");
+      if (!animWrapper || !canvas) return;
+
+      const ctx = canvas.getContext("2d");
+      const frameCount = 90;
+      const images = [];
+      let imagesLoaded = 0;
+      let animationFinished = false;
+
+      for (let i = 1; i <= frameCount; i++) {
+        const img = new Image();
+        img.src = `animation/${i}.webp`;
+        images.push(img);
+        img.onload = () => {
+          imagesLoaded++;
+          if (imagesLoaded === 1) renderFrame(0);
+        };
+      }
+
+      function renderFrame(index) {
+        if (!images[index] || !images[index].complete) return;
+        const img = images[index];
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const hRatio = canvas.width / img.width;
+        const vRatio = canvas.height / img.height;
+        const ratio = Math.min(hRatio, vRatio);
+        const centerShift_x = (canvas.width - img.width * ratio) / 2;
+        const centerShift_y = (canvas.height - img.height * ratio) / 2;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0, img.width, img.height,
+          centerShift_x, centerShift_y, img.width * ratio, img.height * ratio);
+      }
+
+      function updateScroll() {
+        if (animationFinished) return;
+
+        const scrollPosition = window.scrollY;
+        const maxScroll = animWrapper.scrollHeight - window.innerHeight;
+
+        let progress = scrollPosition / maxScroll;
+        progress = Math.max(0, Math.min(1, progress));
+
+        const frameIndex = Math.floor(progress * (frameCount - 1));
+        requestAnimationFrame(() => renderFrame(frameIndex));
+
+        if (progress >= 1 && !animationFinished) {
+          animationFinished = true;
+          animWrapper.style.display = 'none';
+          window.scrollTo(0, 0);
+        }
+      }
+
+      window.addEventListener("scroll", updateScroll, { passive: true });
+      window.addEventListener("resize", () => {
+        if (!animationFinished) updateScroll();
+      });
+
+      // Initial setup
+      updateScroll();
+    });
+  </script>
+</body>
+
+</html>
