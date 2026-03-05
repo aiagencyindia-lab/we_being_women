@@ -183,7 +183,8 @@
       color: var(--rose);
     }
 
-    .nav-bag {
+    .nav-bag,
+    .theme-toggle {
       width: 40px;
       height: 40px;
       border: 1.5px solid var(--border);
@@ -196,9 +197,11 @@
       background: var(--white);
       transition: all .3s;
       box-shadow: 0 2px 12px var(--shadow);
+      text-decoration: none;
     }
 
-    .nav-bag:hover {
+    .nav-bag:hover,
+    .theme-toggle:hover {
       border-color: var(--rose);
       background: var(--bg3);
       transform: translateY(-2px);
@@ -1844,6 +1847,8 @@
     </ul>
     <div class="nav-r">
       <a href="#" class="nav-wish">Wishlist</a>
+      <a href="WeBeing_Women_3D.html" class="theme-toggle" title="Switch to Dark Mode"
+        onclick="sessionStorage.setItem('animationPlayed', 'true')">🌙</a>
       <div class="nav-bag">🛍</div>
     </div>
   </nav>
@@ -2388,6 +2393,11 @@
       const canvas = document.getElementById("first-load-canvas");
       if (!animWrapper || !canvas) return;
 
+      if (sessionStorage.getItem('animationPlayed')) {
+        animWrapper.style.display = 'none';
+        return;
+      }
+
       const ctx = canvas.getContext("2d");
       const frameCount = 90;
       const images = [];
@@ -2436,6 +2446,7 @@
         if (progress >= 1 && !animationFinished) {
           animationFinished = true;
           animWrapper.style.display = 'none';
+          sessionStorage.setItem('animationPlayed', 'true');
           window.scrollTo(0, 0);
         }
       }

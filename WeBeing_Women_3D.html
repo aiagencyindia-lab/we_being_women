@@ -142,7 +142,14 @@
       color: var(--nude);
     }
 
-    .nbag {
+    .nav-r {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nbag,
+    .theme-toggle {
       width: 42px;
       height: 42px;
       border: 1px solid rgba(201, 150, 124, .3);
@@ -153,9 +160,11 @@
       font-size: 16px;
       cursor: pointer;
       transition: all .3s;
+      text-decoration: none;
     }
 
-    .nbag:hover {
+    .nbag:hover,
+    .theme-toggle:hover {
       border-color: var(--r);
       background: rgba(201, 150, 124, .1);
     }
@@ -1666,7 +1675,11 @@
       <li><a href="#story">Story</a></li>
       <li><a href="#about">About</a></li>
     </ul>
-    <div class="nbag">🛍</div>
+    <div class="nav-r">
+      <a href="index.html" class="theme-toggle" title="Switch to Light Mode"
+        onclick="sessionStorage.setItem('animationPlayed', 'true')">☀️</a>
+      <div class="nbag">🛍</div>
+    </div>
   </nav>
 
   <!-- HERO -->
@@ -2157,6 +2170,11 @@
       const canvas = document.getElementById("first-load-canvas");
       if (!animWrapper || !canvas) return;
 
+      if (sessionStorage.getItem('animationPlayed')) {
+        animWrapper.style.display = 'none';
+        return;
+      }
+
       const ctx = canvas.getContext("2d");
       const frameCount = 90;
       const images = [];
@@ -2205,6 +2223,7 @@
         if (progress >= 1 && !animationFinished) {
           animationFinished = true;
           animWrapper.style.display = 'none';
+          sessionStorage.setItem('animationPlayed', 'true');
           window.scrollTo(0, 0);
         }
       }
